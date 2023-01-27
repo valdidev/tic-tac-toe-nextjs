@@ -62,7 +62,7 @@ function Board() {
     if (!w && !squares.filter((square) => !square).length) {
       setWinner("DRAW");
     }
-  });
+  }, [squares] );
 
   return (
     <div className="board">
