@@ -1,7 +1,7 @@
 import Square from "@/components/Square";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-type Player = "X" | "O" | null;
+type Player = "X" | "O" | "DRAW" | null;
 
 function calculateWinner(squares: Player[]) {
   const winningCombinations = [
@@ -32,7 +32,7 @@ function Board() {
     Math.round(Math.random() * 1) === 1 ? "X" : "O"
   );
 
-  const [winner, setWinner] = useState(null);
+  const [winner, setWinner] = useState<Player>(null);
 
   function reset() {
     setSquares(Array(9).fill(null));
@@ -52,9 +52,22 @@ function Board() {
     setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
   }
 
+  useEffect(() => {
+    const w = calculateWinner(squares);
+
+    if (w) {
+      setWinner(w);
+    }
+
+    if (!w) {
+    }
+  });
+
   return (
     <div className="board">
-      <p>Ey! {currentPlayer}, your turn</p>
+      {!winner && <p>Ey! {currentPlayer}, your turn</p>}
+      {winner && winner !== "DRAW" && <p>Congratualations {winner}</p>}
+      {winner && winner === "DRAW" && <p>There is a draw!</p>}
       <div className="grid">
         {Array(9)
           .fill(null)

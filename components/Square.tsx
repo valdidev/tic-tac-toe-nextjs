@@ -1,4 +1,4 @@
-type Player = "X" | "O" | null;
+type Player = "X" | "O" | "DRAW" | null;
 
 function Square({
   value,
