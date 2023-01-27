@@ -25,19 +25,20 @@ function Board() {
   return (
     <div>
       <p>Ey! {currentPlayer}, your turn</p>
-
-      {Array(9)
-        .fill(null)
-        .map((_, i) => {
-          return (
-            <Square
-              winner={winner}
-              key={i}
-              onClick={() => setSquareValue(i)}
-              value={squares[i]}
-            />
-          );
-        })}
+      <div className="grid">
+        {Array(9)
+          .fill(null)
+          .map((_, i) => {
+            return (
+              <Square
+                winner={winner}
+                key={i}
+                onClick={() => setSquareValue(i)}
+                value={squares[i]}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 }
