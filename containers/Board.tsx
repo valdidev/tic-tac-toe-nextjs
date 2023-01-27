@@ -59,7 +59,8 @@ function Board() {
       setWinner(w);
     }
 
-    if (!w) {
+    if (!w && !squares.filter((square) => !square).length) {
+      setWinner("DRAW");
     }
   });
 
