@@ -1,6 +1,30 @@
 import Square from "@/components/Square";
 import { useState } from "react";
 
+type Player = "X" | "O" | null;
+
+function calculateWinner(squares: Player[]) {
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (let i = 0; i < winningCombinations.length; i++) {
+    const [a, b, c] = winningCombinations[i];
+    // detecting winning line
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
 function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
@@ -27,8 +51,6 @@ function Board() {
     setSquares(newData);
     setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
   }
-
-  
 
   return (
     <div className="board">
