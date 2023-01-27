@@ -10,34 +10,34 @@ function Board() {
 
   const [winner, setWinner] = useState(null);
 
-  function setSquareValue(index) {
-      const newData = squares.map((value, i) => {
-        if (i === index) {
-          return currentPlayer
-        }
-        return value
-      })
+  function setSquareValue(index: number) {
+    const newData = squares.map((value, i) => {
+      if (i === index) {
+        return currentPlayer;
+      }
+      return value;
+    });
 
-      setSquares(newData)
-      setCurrentPlayer(currentPlayer === 'X' ? "O" : "X")
-        
+    setSquares(newData);
+    setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
   }
-
 
   return (
     <div>
       <p>Ey! {currentPlayer}, your turn</p>
-      
 
-      {
-    Array(9)
-      .fill(null)
-      .map((_, i) => {
-        return <Square winner={winner} key={i} onClick={() => setSquareValue(i)} value={squares[i]} />;
-      });
-  }
-
-    
+      {Array(9)
+        .fill(null)
+        .map((_, i) => {
+          return (
+            <Square
+              winner={winner}
+              key={i}
+              onClick={() => setSquareValue(i)}
+              value={squares[i]}
+            />
+          );
+        })}
     </div>
   );
 }
