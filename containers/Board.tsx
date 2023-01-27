@@ -28,8 +28,10 @@ function Board() {
     setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
   }
 
+  
+
   return (
-    <div>
+    <div className="board">
       <p>Ey! {currentPlayer}, your turn</p>
       <div className="grid">
         {Array(9)
